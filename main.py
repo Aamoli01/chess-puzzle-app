@@ -32,7 +32,7 @@ piece = st.session_state.piece
 
 # --- Encode FEN properly for URL ---
 fen_encoded = quote(puzzle["fen"])
-board_url = f"https://lichess.org/api/board.png?fen={fen_encoded}&theme={theme}&piece={piece}"
+board_url = f"https://chessboardimage.com/{fen_encoded}.png"
 
 # --- Display the board image ---
 st.image(board_url, caption="Current Position", use_container_width=True)
