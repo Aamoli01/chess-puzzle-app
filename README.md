@@ -32,7 +32,7 @@ streamlit run main.py
 
 ---
 ## 🌐 Live Demo  
-👉 [Click here to try the app]([https://aamoli01-chess-puzzle-app-main-lcunu9.streamlit.app](https://aamoli01-chess-puzzle-app-main-lcunu9.streamlit.app/#chess-puzzle-generator))
+👉 [Click here to try the app]([https://aamoli01-chess-puzzle-app-main-lcunu9.streamlit.app](https://aamoli01-chess-puzzle-app-main-lcunu9.streamlit.app/#chess-puzzle-generator))[Click here to try](https://aamoli01-chess-puzzle-app-main-lcunu9.streamlit.app/#chess-puzzle-generator)
 
 
 
