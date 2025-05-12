@@ -20,16 +20,27 @@ puzzles = [
     }
 ]
 
+# Select puzzle
 puzzle = random.choice(puzzles)
 
-st.title("♟️ Chess Puzzle Generator")
-st.write(f"**Puzzle Rating:** {puzzle['rating']}")
-st.write("**FEN:**", puzzle["fen"])
+# Build Lichess board image URL
+fen_encoded = puzzle["fen"].replace(" ", "_")
+board_url = f"https://lichess.org/api/board.png?fen={fen_encoded}&theme=blue&piece=merida"
 
-user_move = st.text_input("Your move (e.g., Nc3):")
+# Streamlit UI
+st.set_page_config(page_title="♟️ Chess Puzzle", layout="centered")
+
+st.markdown("<h1 style='text-align: center;'>♟️ Chess Puzzle Generator</h1>", unsafe_allow_html=True)
+st.image(board_url, caption="Current Position", use_column_width=True)
+
+st.markdown(f"### 🧠 Puzzle Rating: {puzzle['rating']}")
+user_move = st.text_input("📝 Your move (like Nc3, d4, etc.):", "")
 
 if user_move:
     if user_move.lower().strip() == puzzle["solution"].lower():
-        st.success("✅ Correct!")
+        st.success("✅ Correct! Well played!")
     else:
-        st.error(f"❌ Incorrect. Best move was: {puzzle['solution']}")
+        st.error(f"❌ Nope! The correct move is: `{puzzle['solution']}`")
+
+st.markdown("---")
+st.markdown("Made with ❤️ by Aamoli Kumari", unsafe_allow_html=True)
