@@ -31,6 +31,8 @@ pip install -r requirements.txt
 streamlit run main.py
 
 ---
+## 🌐 Live Demo  
+👉 [Click here to try the app](https://aamoli01-chess-puzzle-app-main-lcunu9.streamlit.app)
 
 
 
