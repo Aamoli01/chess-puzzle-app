@@ -1,5 +1,6 @@
 import streamlit as st
 import random
+from urllib.parse import quote
 
 # --- Chess puzzle database ---
 puzzles = [
@@ -19,8 +20,8 @@ st.set_page_config(page_title="♟️ Chess Puzzle", layout="centered")
 
 st.markdown("<h1 style='text-align: center;'>♟️ Chess Puzzle Generator</h1>", unsafe_allow_html=True)
 
-# --- "Next Puzzle" Button ---
-if "puzzle_index" not in st.session_state or st.button("🔁 New Puzzle"):
+# --- "New Puzzle" Button ---
+if "puzzle" not in st.session_state or st.button("🔁 New Puzzle"):
     st.session_state.puzzle = random.choice(puzzles)
     st.session_state.theme = random.choice(themes)
     st.session_state.piece = random.choice(pieces)
@@ -29,13 +30,14 @@ puzzle = st.session_state.puzzle
 theme = st.session_state.theme
 piece = st.session_state.piece
 
-# --- Display the board ---
-fen_encoded = puzzle["fen"].replace(" ", "_")
+# --- Encode FEN properly for URL ---
+fen_encoded = quote(puzzle["fen"])
 board_url = f"https://lichess.org/api/board.png?fen={fen_encoded}&theme={theme}&piece={piece}"
 
+# --- Display the board image ---
 st.image(board_url, caption="Current Position", use_container_width=True)
 
-# --- Puzzle info and input ---
+# --- Display puzzle details ---
 st.markdown(f"### 🧠 Puzzle Rating: {puzzle['rating']}")
 user_move = st.text_input("📝 Your move (e.g., Nc3, d4):")
 
