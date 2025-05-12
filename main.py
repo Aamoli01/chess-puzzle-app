@@ -1,9 +1,7 @@
 import streamlit as st
 import random
-import chess
-import chess.svg
 
-# Hardcoded puzzles (FEN, best move, rating)
+# Hardcoded puzzles
 puzzles = [
     {
         "fen": "r1bqkbnr/pppppppp/n7/8/8/5N2/PPPPPPPP/RNBQKB1R w KQkq - 0 2",
@@ -22,21 +20,16 @@ puzzles = [
     }
 ]
 
-# Select a random puzzle
 puzzle = random.choice(puzzles)
 
-st.title("♟️ Chess Puzzle Generator ♟️")
+st.title("♟️ Chess Puzzle Generator")
 st.write(f"**Puzzle Rating:** {puzzle['rating']}")
+st.write("**FEN:**", puzzle["fen"])
 
-# Display the chessboard
-board = chess.Board(puzzle['fen'])
-st.image(chess.svg.board(board=board), use_column_width=True)
-
-# User input
 user_move = st.text_input("Your move (e.g., Nc3):")
 
 if user_move:
-    if user_move.lower() == puzzle["solution"].lower():
+    if user_move.lower().strip() == puzzle["solution"].lower():
         st.success("✅ Correct!")
     else:
-        st.error(f"❌ Incorrect. The best move is: {puzzle['solution']}")
+        st.error(f"❌ Incorrect. Best move was: {puzzle['solution']}")
